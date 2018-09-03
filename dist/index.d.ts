@@ -1,1 +1,1 @@
-export declare function test(s: string): string;
+export * from './type-parse';

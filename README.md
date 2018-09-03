@@ -7,22 +7,28 @@ npm install csharp-helpers --save
 
 ## Usage
 
-### Javascript
-```javascript
-var csharpHelpers = require('csharp-helpers');
-var c = csharpHelpers.test('a');
-```
-```sh
-Output should be 'test [a]'
-```
+### parseAssemblyQualifiedName
 
-### TypeScript
+Parses C#'s `typeof().FullName` Assembly Qualified Name to something readable by machine.
+
 ```typescript
-import { test } from 'csharp-helpers';
-console.log(test('a'))
+import { parseAssemblyQualifiedName } from 'csharp-helpers';
+console.log(test('System.IEnumerable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]'))
 ```
 ```sh
-Output should be 'test [a]'
+Output is 
+{
+    namespace: "System",
+    typeName: "IEnumerable",
+    assembly: undefined,
+    templateParameters: [{
+        namespace: "System",
+        typeName: "Int32",
+        assembly: "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+        templateParameters: undefined
+    }]
+}
+
 ```
 
 ## Test 
