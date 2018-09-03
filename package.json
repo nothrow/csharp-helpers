@@ -1,0 +1,19 @@
+{
+  "name": "csharp-helpers",
+  "version": "0.9.0",
+  "description": "Helpers for having interoperability between c# and frontend",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nothrow/csharp-helpers.git"
+  },
+  "author": "Vita Tauer <vita@nothrow.cz>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nothrow/csharp-helpers/issues"
+  },
+  "homepage": "https://github.com/nothrow/csharp-helpers#readme"
+}
