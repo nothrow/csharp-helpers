@@ -69,3 +69,54 @@ describe('parseAssemblyQualifiedName function test', () => {
         });
     })
 });
+
+
+describe("formatType function test", () => {
+    const object = {
+        assembly: undefined,
+        namespace: "System.Collections.Generic",
+        typeName: "IEnumerable",
+        templateParameters: [{
+            namespace: "System.Collections.Generic",
+            typeName: "KeyValuePair",
+            assembly: "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+            templateParameters: [
+                {
+                    namespace: "System.Collections.Generic",
+                    typeName: "KeyValuePair",
+                    assembly: "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                    templateParameters: [
+                        {
+                            namespace: "System",
+                            typeName: "String",
+                            assembly: "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                            templateParameters: undefined
+                        },
+                        {
+                            namespace: "System",
+                            typeName: "Int32",
+                            assembly: "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                            templateParameters: undefined
+                        }
+                    ]
+                },
+                {
+                    namespace: "System",
+                    typeName: "Int32",
+                    assembly: "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                    templateParameters: undefined
+                }
+            ]
+        }]
+    };
+
+    it('with namespaces', () => {
+        var result = index.formatType(object, index.FormatFlags.IncludeNamespaces);
+        expect(result).to.equal("System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<System.Collections.Generic.KeyValuePair<System.String,System.Int32>,System.Int32>>");
+    })
+
+    it('without namespaces', () => {
+        var result = index.formatType(object, index.FormatFlags.ExcludeNamespaces);
+        expect(result).to.equal("IEnumerable<KeyValuePair<KeyValuePair<String,Int32>,Int32>>");
+    })
+});
