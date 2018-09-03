@@ -1,3 +1,1 @@
-export function test(s: string) : string {
-    return `test [${s}]`;
-}
+export * from './type-parse';
